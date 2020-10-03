@@ -1,0 +1,1 @@
+This software product allows the client to make an electronic appointment with a doctor.
