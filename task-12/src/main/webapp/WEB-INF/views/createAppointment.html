@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create appointment</title>
+</head>
+
+<body BGCOLOR="silver">
+<a th:href="@{'/profile'}">Back</a>
+<hr>
+
+<div align="center">
+    <h2>Create new appointment</h2>
+    <br/>
+    <form action="#" th:action="@{/createAppointment}" th:object="${appointment}" method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Date:</td>
+                <td><input type="date" th:field="*{dat}" th:min="${currentDate}"/>
+                <th:block th:if="${#fields.hasErrors('dat')}">
+                    <div th:errorclass="invalid-input" th:errors="*{dat}" style="color: darkred"></div>
+                </th:block></td>
+            </tr>
+            <tr>
+                <td>Doctor:</td>
+                <td><select type="text" th:field="*{doctor}">
+                    <option value="">Select doctor</option>
+                    <option th:each="doc : ${doctorsList}"
+                            th:value="${doc}"
+                            th:text="${doc}">
+                    </option>
+                </select>
+                <th:block th:if="${#fields.hasErrors('doctor')}">
+                    <div th:errorclass="invalid-input" th:errors="*{doctor}" style="color: darkred"></div>
+                </th:block></td>
+            </tr>
+            <tr>
+                <td>Diagnosis:</td>
+                <td><select type="text" th:field="*{diagnosis}">
+                    <option value="">Select diagnosis</option>
+                    <option th:each="diagn : ${diagnosesList}"
+                            th:value="${diagn}"
+                            th:text="${diagn}">
+                    </option>
+                </select>
+                <th:block th:if="${#fields.hasErrors('diagnosis')}">
+                    <div th:errorclass="invalid-input" th:errors="*{diagnosis}" style="color: darkred"></div>
+                </th:block></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<br>
+<hr>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

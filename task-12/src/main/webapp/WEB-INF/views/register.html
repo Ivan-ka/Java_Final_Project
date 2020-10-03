@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Register</title>
+</head>
+
+<body BGCOLOR="silver">
+<a th:href="@{'/'}">Home page</a>&nbsp;&nbsp;
+<a th:href="@{'/login'}">Login</a>
+<hr>
+
+<h5 align=CENTER>
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        Name:<br>
+        <input type="text" th:field="*{name}"/>
+        <th:block th:if="${#fields.hasErrors('name')}">
+            <div th:errorclass="invalid-input" th:errors="*{name}" style="color: darkred"></div>
+        </th:block>
+        <br>
+        Surname:<br>
+        <input type="text" th:field="*{surname}"/>
+        <th:block th:if="${#fields.hasErrors('surname')}">
+            <div th:errorclass="invalid-input" th:errors="*{surname}" style="color: darkred"></div>
+        </th:block>
+        <br>
+        Date of birth:<br>
+        <input type="date" th:field="*{dateOfBirth}" th:max="${currentDate}"/>
+        <th:block th:if="${#fields.hasErrors('dateOfBirth')}">
+            <div th:errorclass="invalid-input" th:errors="*{dateOfBirth}" style="color: darkred"></div>
+        </th:block>
+        <br>
+        Email:<br>
+        <input type="text" th:field="*{email}"/>
+        <th:block th:if="${#fields.hasErrors('email')}">
+            <div th:errorclass="invalid-input" th:errors="*{email}" style="color: darkred"></div>
+        </th:block>
+        <br>
+        Password:<br>
+        <input type="text" th:field="*{password}"/>
+        <th:block th:if="${#fields.hasErrors('password')}">
+            <div th:errorclass="invalid-input" th:errors="*{password}" style="color: darkred"></div>
+        </th:block>
+        <br>
+        Repeat password:<br>
+        <input type="text" th:field="*{passwordRepetition}"/>
+        <th:block th:if="${#fields.hasErrors('passwordRepetition')}">
+            <div th:errorclass="invalid-input" th:errors="*{passwordRepetition}" style="color: darkred"></div>
+        </th:block>
+        <br><br>
+        Male:&nbsp;&nbsp;
+        <input type="checkbox" name="checkGender" th:checked="*{checkGender}"/>
+        <br><br>
+        Administrator:&nbsp;&nbsp;
+        <input type="checkbox" name="checkRole" th:checked="*{checkRole}"/>
+        <br><br>
+        <input type="submit" value="Register"/> <input type="reset" value="Reset"/><br><br>
+    </form>
+</h5>
+<hr>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

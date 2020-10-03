@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+
+<body BGCOLOR="silver">
+<a th:href="@{'/logout'}">Logout</a>&nbsp;&nbsp;
+<a th:href="@{'/appointments'}">Appointments</a>&nbsp;&nbsp;
+<a th:href="@{'/users'}">Users</a>&nbsp;&nbsp;
+<a th:href="@{'/basket'}">Basket</a>
+<hr>
+
+<div align="center">
+    <h2>My profile</h2><br/>
+
+    Name:
+    <span th:text="${user.name}"/><br><br>
+
+    Surname:
+    <span th:text="${user.surname}"/><br><br>
+
+    Date of birth:
+    <span th:text="${user.dateOfBirth}"/><br><br>
+
+    Email:
+    <span th:text="${user.email}"/><br><br>
+
+    Gender:
+    <span th:text="${user.gender}"/><br><br>
+
+    Role:
+    <span th:text="${user.role}"/><br><br><br>
+</div>
+
+<hr>
+
+<div align="center" th:if="${!listAppointments.isEmpty()}">
+    <h2>My appointments</h2>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Date</th>
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Diagnosis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appointment : ${listAppointments}">
+            <td th:text="${appointment.id}">Appointment ID</td>
+            <td th:text="${appointment.dat}">Date</td>
+            <td th:text="${appointment.doctor}">Doctor</td>
+            <td th:text="${appointment.patient}">Patient</td>
+            <td th:text="${appointment.diagnosis}">Diagnosis</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+    <a th:href="@{'/createAppointment'}">Create new appointment</a>
+</div>
+
+<div align="center" th:if="${listAppointments.isEmpty()}">
+    <h2>No appointments</h2>
+    <br/><br/>
+    <a th:href="@{'/createAppointment'}">Create new appointment</a>
+</div>
+
+<br><br>
+<hr>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

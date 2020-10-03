@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit basket appointment</title>
+</head>
+
+<body BGCOLOR="silver">
+<a th:href="@{'/basket'}">Back</a>
+<hr>
+
+<div align="center">
+    <h2>Edit appointment</h2>
+    <br/>
+    <form action="#" th:action="@{/editBasketAppointment}" th:object="${appointment}" method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Appointment ID:</td>
+                <td>
+                    <input type="text" th:field="*{id}" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td><input type="date" th:field="*{dat}" th:min="${currentDate}"/></td>
+            </tr>
+            <tr>
+                <td>Patient:</td>
+                <td><input type="text" th:field="*{patient}"/></td>
+            </tr>
+            <tr>
+                <td>Doctor:</td>
+                <td><select type="text" th:field="*{doctor}">
+                    <option th:each="doc : ${doctorsList}"
+                            th:value="${doc}"
+                            th:text="${doc}">
+                    </option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Diagnosis:</td>
+                <td><select type="text" th:field="*{diagnosis}">
+                    <option th:each="diagn : ${diagnosesList}"
+                            th:value="${diagn}"
+                            th:text="${diagn}">
+                    </option>
+                </select></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<br><br>
+<hr>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>

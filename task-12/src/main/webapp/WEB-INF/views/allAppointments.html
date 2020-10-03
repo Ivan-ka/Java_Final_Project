@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+
+<body BGCOLOR="silver">
+<a th:href="@{'/profile'}">Profile</a>
+<hr>
+
+<div align="center" th:if="${!listAppointments.isEmpty()}">
+    <h2>Appointments list</h2>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Date</th>
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Diagnosis</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appointment : ${listAppointments}">
+            <td th:text="${appointment.id}">Appointment ID</td>
+            <td th:text="${appointment.dat}">Date</td>
+            <td th:text="${appointment.doctor}">Doctor</td>
+            <td th:text="${appointment.patient}">Patient</td>
+            <td th:text="${appointment.diagnosis}">Diagnosis</td>
+            <td>
+                <a th:href="@{'/edit/' + ${appointment.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete/' + ${appointment.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div align="center" th:if="${listAppointments.isEmpty()}">
+    <h2>No appointments</h2>
+</div>
+
+<br><br>
+<hr>
+<div th:insert="~{footer :: footer}"></div>
+</body>
+</html>
